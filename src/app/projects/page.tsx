@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getAllProjects } from "@/lib/markdown";
 
 export const metadata = {
@@ -27,7 +28,8 @@ export default function ProjectsPage() {
       ) : (
         <div className="grid sm:grid-cols-2 gap-6">
           {projects.map((project) => (
-            <div
+            <Link
+              href={`/projects/${project.slug}`}
               key={project.slug}
               className="group rounded-xl border border-[var(--color-card-border)] bg-[var(--color-card)] overflow-hidden hover:border-[var(--color-accent)] transition-colors"
             >
@@ -80,7 +82,7 @@ export default function ProjectsPage() {
                   )}
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       )}
