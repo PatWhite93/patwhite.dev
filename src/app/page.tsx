@@ -1,65 +1,132 @@
-import Image from "next/image";
+import Link from "next/link";
+
+const skills = [
+  "React",
+  "TypeScript",
+  "Node.js",
+  "C#",
+  "AWS",
+  "Terraform",
+  "Docker",
+  "LLM Orchestration",
+  "AI Automation",
+  "CI/CD",
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+    <div className="max-w-5xl mx-auto px-6 py-20">
+      {/* Hero */}
+      <section className="mb-20">
+        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6 leading-tight">
+          Hey, I&apos;m{" "}
+          <span className="text-[var(--color-accent)]">Pat White</span>.
+        </h1>
+        <p className="text-xl text-[var(--color-muted)] max-w-2xl mb-4 leading-relaxed">
+          Full-stack engineer who ships fast by working with AI, not against it.
+          5 years building production web apps. Now focused on AI-augmented
+          development workflows and building tools that multiply engineering
+          output.
+        </p>
+        <p className="text-lg text-[var(--color-muted)] max-w-2xl leading-relaxed">
+          I build things, break things, automate the boring parts, and
+          occasionally write about it.
+        </p>
+        <div className="flex gap-4 mt-8">
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--color-accent)] text-white rounded-lg font-medium text-sm hover:bg-[var(--color-accent-hover)] transition-colors"
+          >
+            See my work
+          </Link>
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://linkedin.com/in/pwhite29009"
             target="_blank"
             rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--color-card-border)] rounded-lg font-medium text-sm hover:border-[var(--color-muted)] transition-colors"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+            LinkedIn
           </a>
           <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://github.com/patwhite"
             target="_blank"
             rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--color-card-border)] rounded-lg font-medium text-sm hover:border-[var(--color-muted)] transition-colors"
           >
-            Documentation
+            GitHub
           </a>
         </div>
-      </main>
+      </section>
+
+      {/* Skills */}
+      <section className="mb-20">
+        <h2 className="text-sm font-medium uppercase tracking-widest text-[var(--color-muted)] mb-4">
+          What I work with
+        </h2>
+        <div className="flex flex-wrap gap-2">
+          {skills.map((skill) => (
+            <span
+              key={skill}
+              className="px-3 py-1.5 text-sm rounded-full border border-[var(--color-card-border)] text-[var(--color-muted)] hover:text-[var(--color-foreground)] hover:border-[var(--color-accent)] transition-colors"
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* What I'm about */}
+      <section className="mb-20">
+        <h2 className="text-sm font-medium uppercase tracking-widest text-[var(--color-muted)] mb-6">
+          What I do
+        </h2>
+        <div className="grid sm:grid-cols-2 gap-6">
+          {[
+            {
+              title: "AI-Augmented Development",
+              desc: "I use LLMs as thinking partners to ship production features in hours, not days. It's not about generating code \u2014 it's about asking the right questions faster.",
+            },
+            {
+              title: "Full-Stack Engineering",
+              desc: "React/TypeScript frontends, Node.js and C# backends, AWS infrastructure. I've built everything from enterprise platforms to real-time multiplayer games.",
+            },
+            {
+              title: "Internal Tooling & Automation",
+              desc: "I see repetitive processes as bugs. I build tools that automate workflows, clean up data at scale, and eliminate manual overhead.",
+            },
+            {
+              title: "Infrastructure & DevOps",
+              desc: "Terraform, CI/CD pipelines, Docker. I debug the issues nobody else catches and optimize the systems everyone else ignores.",
+            },
+          ].map((item) => (
+            <div
+              key={item.title}
+              className="p-6 rounded-xl border border-[var(--color-card-border)] bg-[var(--color-card)]"
+            >
+              <h3 className="font-semibold mb-2">{item.title}</h3>
+              <p className="text-sm text-[var(--color-muted)] leading-relaxed">
+                {item.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="text-center py-12 border-t border-[var(--color-card-border)]">
+        <h2 className="text-2xl font-bold mb-3">
+          Interested in working together?
+        </h2>
+        <p className="text-[var(--color-muted)] mb-6">
+          I&apos;m exploring senior engineering and AI platform roles.
+        </p>
+        <a
+          href="mailto:pmw1988@gmail.com"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-accent)] text-white rounded-lg font-medium hover:bg-[var(--color-accent-hover)] transition-colors"
+        >
+          Get in touch
+        </a>
+      </section>
     </div>
   );
 }
