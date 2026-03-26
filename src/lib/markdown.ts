@@ -25,6 +25,8 @@ export type ProjectMeta = {
   demo?: string;
   repo?: string;
   image?: string;
+  images?: string[];
+  carouselTitle?: string;
   featured: boolean;
   order: number;
 };
@@ -66,7 +68,7 @@ export async function getPostContent(slug: string) {
   const filePath = path.join(contentDir, "blog", `${slug}.md`);
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
-  const result = await remark().use(html).process(content);
+  const result = await remark().use(html, { sanitize: false }).process(content);
   const stats = readingTime(content);
   return {
     meta: {
@@ -101,8 +103,10 @@ export function getProjectMeta(slug: string): ProjectMeta {
     demo: data.demo,
     repo: data.repo,
     image: data.image,
+    images: data.images,
+    carouselTitle: data.carouselTitle,
     featured: data.featured || false,
-    order: data.order || 99,
+    order: data.order ?? 99,
   };
 }
 
@@ -110,7 +114,7 @@ export async function getProjectContent(slug: string) {
   const filePath = path.join(contentDir, "projects", `${slug}.md`);
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
-  const result = await remark().use(html).process(content);
+  const result = await remark().use(html, { sanitize: false }).process(content);
   return {
     meta: getProjectMeta(slug),
     html: result.toString(),

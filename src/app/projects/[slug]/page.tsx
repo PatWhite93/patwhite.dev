@@ -1,5 +1,7 @@
 import { getAllProjects, getProjectContent } from "@/lib/markdown";
 import Link from "next/link";
+import ImageCarousel from "@/components/ImageCarousel";
+import ImageLightbox from "@/components/ImageLightbox";
 import type { Metadata } from "next";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -30,6 +32,22 @@ export default async function ProjectPage({ params }: Props) {
       >
         &larr; All projects
       </Link>
+
+      {meta.image && (
+        <div className="relative aspect-video rounded-xl overflow-hidden border border-[var(--color-card-border)] mb-10">
+          <img
+            src={meta.image}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover blur-lg scale-110"
+          />
+          <img
+            src={meta.image}
+            alt={meta.title}
+            className="relative w-full h-full object-contain"
+          />
+        </div>
+      )}
 
       <header className="mb-10">
         <h1 className="text-3xl font-bold mb-3">{meta.title}</h1>
@@ -74,7 +92,30 @@ export default async function ProjectPage({ params }: Props) {
         )}
       </header>
 
-      <div className="prose" dangerouslySetInnerHTML={{ __html: html }} />
+      {(() => {
+        const placeholder = '<p>{{carousel}}</p>';
+        const parts = html.split(placeholder);
+        const hasCarousel = parts.length > 1 && meta.images && meta.images.length > 0;
+
+        if (!hasCarousel) {
+          return <div className="prose" dangerouslySetInnerHTML={{ __html: html }} />;
+        }
+
+        return parts.map((part, i) => (
+          <div key={i}>
+            {part && <div className="prose" dangerouslySetInnerHTML={{ __html: part }} />}
+            {i < parts.length - 1 && (
+              <div className="my-10">
+                {meta.carouselTitle && (
+                  <h2 className="text-xl font-semibold mb-4">{meta.carouselTitle}</h2>
+                )}
+                <ImageCarousel images={meta.images!} alt={meta.carouselTitle || meta.title} />
+              </div>
+            )}
+          </div>
+        ));
+      })()}
+      <ImageLightbox />
     </article>
   );
 }

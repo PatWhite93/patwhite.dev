@@ -34,11 +34,17 @@ export default function ProjectsPage() {
               className="group rounded-xl border border-[var(--color-card-border)] bg-[var(--color-card)] overflow-hidden hover:border-[var(--color-accent)] transition-colors"
             >
               {project.image && (
-                <div className="aspect-video bg-[var(--color-background)] border-b border-[var(--color-card-border)]">
+                <div className="aspect-video bg-[var(--color-background)] border-b border-[var(--color-card-border)] relative overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt=""
+                    aria-hidden="true"
+                    className="absolute inset-0 w-full h-full object-cover blur-lg scale-110"
+                  />
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    className="relative w-full h-full object-contain"
                   />
                 </div>
               )}

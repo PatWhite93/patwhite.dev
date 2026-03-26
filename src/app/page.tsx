@@ -40,7 +40,7 @@ export default function Home() {
             See my work
           </Link>
           <a
-            href="https://linkedin.com/in/pwhite29009"
+            href="https://www.linkedin.com/in/patwhite93/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--color-card-border)] rounded-lg font-medium text-sm hover:border-[var(--color-muted)] transition-colors"
@@ -48,7 +48,7 @@ export default function Home() {
             LinkedIn
           </a>
           <a
-            href="https://github.com/patwhite"
+            href="https://github.com/PatWhite93/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--color-card-border)] rounded-lg font-medium text-sm hover:border-[var(--color-muted)] transition-colors"
